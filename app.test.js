@@ -62,3 +62,23 @@ test('DELETE /todos/nonexistent-id returns a JSON error body', async () => {
   expect(res.statusCode).toBe(404);
   expect(res.body).toEqual({ error: 'todo not found' });
 });
+
+test('PATCH /todos/:id/done returns 200 with done true', async () => {
+  const created = await request(app).post('/todos').send({ title: 'Finish me' });
+  const res = await request(app).patch(`/todos/${created.body.id}/done`);
+  expect(res.statusCode).toBe(200);
+  expect(res.body).toEqual({ ...created.body, done: true });
+});
+
+test('PATCH /todos/:id/done is reflected in GET /todos', async () => {
+  const created = await request(app).post('/todos').send({ title: 'Check list' });
+  await request(app).patch(`/todos/${created.body.id}/done`);
+  const res = await request(app).get('/todos');
+  expect(res.body.find((t) => t.id === created.body.id).done).toBe(true);
+});
+
+test('PATCH /todos/nonexistent-id/done returns 404', async () => {
+  const res = await request(app).patch('/todos/nonexistent-id/done');
+  expect(res.statusCode).toBe(404);
+  expect(res.body).toEqual({ error: 'todo not found' });
+});
