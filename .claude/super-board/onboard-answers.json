@@ -1,0 +1,34 @@
+{
+ "version": 2,
+ "updated": "2026-10-14T00:00:00Z",
+ "last_step": "review",
+ "answers": {
+  "github": {
+   "login": "ai-sourabhsoni",
+   "remote": "github.com/ai-sourabhsoni/agentic-todo-app",
+   "second_account": false
+  },
+  "board": {
+   "owner": "ai-sourabhsoni",
+   "number": 1,
+   "title": "Agentic-todo-app board",
+   "reused": false
+  },
+  "base_branch": "staging",
+  "agents": "create",
+  "policies": {
+   "merge_default": "auto",
+   "protect_main": true,
+   "allowed_envs": [
+    "test",
+    "staging"
+   ]
+  },
+  "permissions": "add",
+  "collect": [
+   "github",
+   "prs"
+  ],
+  "custom": []
+ }
+}
