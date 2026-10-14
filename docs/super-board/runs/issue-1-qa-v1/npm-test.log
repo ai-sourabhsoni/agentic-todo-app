@@ -1,0 +1,9 @@
+
+> agentic-todo-app@1.0.0 test
+> jest
+
+Test Suites: 1 passed, 1 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        0.343 s
+Ran all test suites.

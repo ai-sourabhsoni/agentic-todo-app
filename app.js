@@ -18,5 +18,15 @@ app.post('/todos', (req, res) => {
   res.status(201).json(todo);
 });
 
-app.listen(3000, () => console.log('Todo app running on port 3000'));
+// DELETE a todo by id
+app.delete('/todos/:id', (req, res) => {
+  const index = todos.findIndex((t) => String(t.id) === req.params.id);
+  if (index === -1) return res.status(404).json({ error: 'todo not found' });
+  todos.splice(index, 1);
+  res.status(204).end();
+});
+
+if (require.main === module) {
+  app.listen(3000, () => console.log('Todo app running on port 3000'));
+}
 module.exports = app;
